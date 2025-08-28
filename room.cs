@@ -34,26 +34,6 @@ public class NewRoom
     {   
         AddRoom(false, true, false, false, false);
     }
-    // metod för möte med fiende
-    public void Encounter(bool enemy)
-    {
-        int roll = Misc.Roll();
-        if (roll >= 0)
-        {
-            Console.Clear();
-            Console.WriteLine(@"
-        
-        <<<Gluuuuarrghhh!!!>>>
-
-Plötsligt kommer en person halvspringande emot dig.
-
-Han är klädd i en nerblodad forskarrock och ansiktet är fullkomligt
-
-täckt och förvidet av variga bölder och levrat blod...
-            
-            ");
-        }
-    }
     public void PreviousRoom()
     {
 
@@ -75,7 +55,7 @@ täckt och förvidet av variga bölder och levrat blod...
     }
     public void CreateRoom() //behövs invärden?
     {   
-        bool enemy = false;
+        bool encounter = false;
         bool eventRoom = false;
         bool wPath = false;
         bool sPath = true;
@@ -87,8 +67,9 @@ täckt och förvidet av variga bölder och levrat blod...
             int roll = Misc.Roll();
             if (roll >= 75)
             {
-                enemy = true;
-                Encounter(enemy);
+                encounter = true;
+                if (roll >= 85)
+                    Encounter.HostileEncounter(encounter);
             }
 
             roll = Misc.Roll();
@@ -121,7 +102,7 @@ täckt och förvidet av variga bölder och levrat blod...
             }
 
             AddRoom(eventRoom, wPath, sPath, aPath, dPath);
-            RoomDetails(enemy);
+            RoomDetails(encounter);
             break;
         }
     }  
@@ -170,11 +151,11 @@ täckt och förvidet av variga bölder och levrat blod...
                 }
             }
 
-            if(newRoom[i].Enemy == true)
-            {
-                Console.WriteLine($"<<<ENEMY>>>");
-                Encounter(enemy);
-            } 
+            // if(newRoom[i].Enemy == true)
+            // {
+            //     Console.WriteLine($"<<<ENEMY>>>");
+            //     Encounter(enemy);
+            // } 
         }        
     }
 }
