@@ -40,7 +40,18 @@ public class NewRoom
         int roll = Misc.Roll();
         if (roll >= 0)
         {
-            Console.WriteLine("Fiende");
+            Console.Clear();
+            Console.WriteLine(@"
+        
+        <<<Gluuuuarrghhh!!!>>>
+
+Plötsligt kommer en person halvspringande emot dig.
+
+Han är klädd i en nerblodad forskarrock och ansiktet är fullkomligt
+
+täckt och förvidet av variga bölder och levrat blod...
+            
+            ");
         }
     }
     public void PreviousRoom()
@@ -124,7 +135,7 @@ public class NewRoom
     /// </summary>
     public void RoomDetails(bool enemy)
     {   
-        Console.WriteLine("Efter en stund kan du skönja ",10);
+        Console.WriteLine("Strax ser du ",10);
         for(int i = 0; i < newRoom.Count; i++)
         {   
             if(newRoom[i].EventRoom == true)
@@ -134,12 +145,12 @@ public class NewRoom
 
             if(newRoom[i].APath == true)
             {
-                 Console.Write("en öppning åt vänster ",10);    
+                 Console.Write("en gång åt vänster ",10);    
             }
 
             if(newRoom[i].DPath == true)
             {
-                Console.Write("en öppning åt höger ",10);
+                Console.Write("en gång åt höger ",10);
             }
 
             if(newRoom[i].WPath == true)
@@ -161,7 +172,7 @@ public class NewRoom
 
             if(newRoom[i].Enemy == true)
             {
-                Console.WriteLine($"Encounter");
+                Console.WriteLine($"<<<ENEMY>>>");
                 Encounter(enemy);
             } 
         }        
